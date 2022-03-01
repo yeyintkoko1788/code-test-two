@@ -15,7 +15,7 @@ class TrendingListAdapter(private val listener : TrendingMovieListener) : Recycl
 
     interface TrendingMovieListener{
         fun onTapTrendingMovie(data : MovieVO)
-        fun onTapFavouriteTrending(id : Int, isFavourite : Boolean)
+        fun onTapFavouriteTrending(movie: MovieVO)
     }
 
     @SuppressLint("NotifyDataSetChanged")

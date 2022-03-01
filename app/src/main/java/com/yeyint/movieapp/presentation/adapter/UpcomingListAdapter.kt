@@ -13,7 +13,7 @@ class UpcomingListAdapter(private val listener : UpcomingMovieListener) : Recycl
 
     interface UpcomingMovieListener{
         fun onTapUpcomingMovie(data : MovieVO)
-        fun onTapFavouriteUpcoming(id : Int, isFavourite : Boolean)
+        fun onTapFavouriteUpcoming(movie: MovieVO)
     }
 
     @SuppressLint("NotifyDataSetChanged")

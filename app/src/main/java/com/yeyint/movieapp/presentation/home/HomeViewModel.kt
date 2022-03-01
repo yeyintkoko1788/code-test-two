@@ -52,12 +52,19 @@ class HomeViewModel @Inject constructor(
         getUpcomingMovie()
     }
 
-    fun setFavourite(id : Int, isFavourite : Boolean) = viewModelScope.launch{
-        movieRepository.setFavourite(id,isFavourite)
-    }
-
-    fun setFavouriteUpcomming(id : Int, isFavourite: Boolean) = viewModelScope.launch{
-        movieRepository.setFavourite(id,isFavourite)
+    fun setFavourite(movieVO: MovieVO) = viewModelScope.launch{
+        movieRepository.setFavourite(movieVO.id,movieVO.isFavourite)
+        getFavouriteMovie()
+        if (_comming_movie_list.value?.contains(movieVO) == true){
+            val temp = _comming_movie_list.value
+           temp?.get(temp.indexOf(movieVO))?.isFavourite  = !movieVO.isFavourite
+            _comming_movie_list.value = temp
+        }
+        if (_trending_movie_list.value?.contains(movieVO) == true){
+            val temp = _trending_movie_list.value
+            temp?.get(temp.indexOf(movieVO))?.isFavourite = !movieVO.isFavourite
+            _trending_movie_list.value = temp
+        }
     }
 
     fun getFavouriteMovie() = viewModelScope.launch {

@@ -51,7 +51,7 @@
                 android:layout_margin="@dimen/margin_small"
                 app:layout_constraintEnd_toEndOf="@id/iv_movies"
                 app:layout_constraintTop_toTopOf="@id/iv_movies"
-                android:onClick="@{()->onClickListener.onTapFavouriteTrending(movie.id,movie.favourite)}"
+                android:onClick="@{()->onClickListener.onTapFavouriteTrending(movie)}"
                 app:setFavourite="@{movie.favourite}"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>

@@ -49,7 +49,7 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:layout_margin="@dimen/margin_small"
-                    android:onClick="@{()->onClickListener.onTapFavouriteUpcoming(movie.id,movie.favourite)}"
+                    android:onClick="@{()->onClickListener.onTapFavouriteUpcoming(movie)}"
                     app:layout_constraintEnd_toEndOf="@id/iv_movies"
                     app:layout_constraintTop_toTopOf="@id/iv_movies"
                     app:setFavourite="@{movie.favourite}"/>

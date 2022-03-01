@@ -47,8 +47,8 @@ class HomeActivity : BaseActivity(), UpcomingListAdapter.UpcomingMovieListener,
         startActivity(MovieDetailActivity.getIntent(data.id))
     }
 
-    override fun onTapFavouriteUpcoming(id: Int, isFavourite: Boolean) {
-        viewModel.setFavourite(id,isFavourite)
+    override fun onTapFavouriteUpcoming(movie : MovieVO) {
+        viewModel.setFavourite(movie)
     }
 
 
@@ -56,7 +56,7 @@ class HomeActivity : BaseActivity(), UpcomingListAdapter.UpcomingMovieListener,
         startActivity(MovieDetailActivity.getIntent(data.id))
     }
 
-    override fun onTapFavouriteTrending(id: Int, isFavourite: Boolean) {
-        viewModel.setFavourite(id,isFavourite)
+    override fun onTapFavouriteTrending(movie: MovieVO) {
+        viewModel.setFavourite(movie)
     }
 }
