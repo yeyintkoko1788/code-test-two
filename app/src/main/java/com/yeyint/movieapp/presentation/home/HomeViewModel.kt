@@ -56,6 +56,10 @@ class HomeViewModel @Inject constructor(
         movieRepository.setFavourite(id,isFavourite)
     }
 
+    fun setFavouriteUpcomming(id : Int, isFavourite: Boolean) = viewModelScope.launch{
+        movieRepository.setFavourite(id,isFavourite)
+    }
+
     fun getFavouriteMovie() = viewModelScope.launch {
         movieRepository.getFavouriteMovie().collect {
             favourite_movie = it
