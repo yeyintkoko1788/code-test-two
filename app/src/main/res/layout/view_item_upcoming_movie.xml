@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tool="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="movie"
+            type="com.yeyint.movieapp.domain.models.MovieVO" />
+        <variable
+            name="onClickListener"
+            type="com.yeyint.movieapp.presentation.adapter.UpcomingListAdapter.UpcomingMovieListener" />
+    </data>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:onClick="@{()-> onClickListener.onTapUpcomingMovie(movie)}"
+        android:paddingBottom="@dimen/margin_medium"
+        android:foreground="@drawable/custom_ripple"
+        tool:ignore="UnusedAttribute"
+        android:focusable="true">
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_poster"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:cardCornerRadius="10dp"
+            android:layout_marginEnd="@dimen/margin_medium"
+            app:cardElevation="2dp">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/layout_photo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent">
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/iv_movies"
+                    android:layout_width="130dp"
+                    android:layout_height="0dp"
+                    app:imageUrl="@{movie.poster_path}"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:scaleType="fitXY"
+                    app:layout_constraintDimensionRatio="@string/photo_portrait_ration_1"/>
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_margin="@dimen/margin_small"
+                    android:onClick="@{()->onClickListener.onTapFavouriteUpcoming(movie.id,movie.favourite)}"
+                    app:layout_constraintEnd_toEndOf="@id/iv_movies"
+                    app:layout_constraintTop_toTopOf="@id/iv_movies"
+                    app:setFavourite="@{movie.favourite}"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@id/cv_poster"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_marginStart="@dimen/margin_medium"
+            tool:text="Harry Potter"
+            android:text="@{movie.title}"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:fontFamily="@font/chivo_regular"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_overview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginEnd="@dimen/margin_medium"
+            android:layout_toEndOf="@id/cv_poster"
+            android:layout_below="@id/tv_title"
+            android:textColor="@color/secondary_text"
+            android:maxLines="7"
+            tool:text="Harry Potter"
+            android:text="@{movie.overview}"
+            android:ellipsize="end"
+            android:fontFamily="@font/chivo_regular"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_heart"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_marginBottom="@dimen/margin_small"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:src="@drawable/ic_baseline_favorite_24"
+            app:tint="@color/color_red"
+            android:layout_toEndOf="@id/cv_poster"
+            android:layout_alignBottom="@id/cv_poster"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tool:text="95%"
+            android:text="@{String.valueOf(movie.vote_average) + ` %`}"
+            android:layout_toEndOf="@id/iv_heart"
+            android:layout_alignBottom="@id/iv_heart"
+            android:layout_marginStart="@dimen/margin_medium"
+            android:layout_marginBottom="@dimen/margin_small"/>
+
+    </RelativeLayout>
+</layout>

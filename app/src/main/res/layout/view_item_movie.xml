@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="movie"
+            type="com.yeyint.movieapp.domain.models.MovieVO" />
+        <variable
+            name="onClickListener"
+            type="com.yeyint.movieapp.presentation.adapter.TrendingListAdapter.TrendingMovieListener" />
+    </data>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="@dimen/margin_medium"
+    android:clickable="true"
+    android:onClick="@{() -> onClickListener.onTapTrendingMovie(movie)}"
+    xmlns:tool="http://schemas.android.com/tools"
+    android:foreground="@drawable/custom_ripple"
+    tool:ignore="UnusedAttribute"
+    android:focusable="true">
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_poster"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:cardCornerRadius="10dp"
+        android:layout_marginEnd="@dimen/margin_medium"
+        app:cardElevation="2dp">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout_photo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_movies"
+                android:layout_width="130dp"
+                android:layout_height="0dp"
+                app:imageUrl="@{movie.poster_path}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:scaleType="fitXY"
+                app:layout_constraintDimensionRatio="@string/photo_portrait_ration_1"/>
+            <androidx.appcompat.widget.AppCompatImageView
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_margin="@dimen/margin_small"
+                app:layout_constraintEnd_toEndOf="@id/iv_movies"
+                app:layout_constraintTop_toTopOf="@id/iv_movies"
+                android:onClick="@{()->onClickListener.onTapFavouriteTrending(movie.id,movie.favourite)}"
+                app:setFavourite="@{movie.favourite}"/>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="@+id/cv_poster"
+            app:layout_constraintEnd_toEndOf="@id/cv_poster"
+            app:layout_constraintTop_toBottomOf="@id/cv_poster"
+            tool:text="Harry Potter"
+            android:text="@{movie.title}"
+            android:lines="2"
+            android:maxLines="2"
+            android:ellipsize="end"
+            android:fontFamily="@font/chivo_regular"/>
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_heart"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_baseline_favorite_24"
+            app:layout_constraintStart_toStartOf="parent"
+            app:tint="@color/color_red"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title"/>
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tool:text="95%"
+            android:text="@{String.valueOf(movie.vote_average) + ` %`}"
+            app:layout_constraintStart_toEndOf="@id/iv_heart"
+            app:layout_constraintTop_toBottomOf="@id/tv_title"
+            android:layout_marginStart="@dimen/margin_medium"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

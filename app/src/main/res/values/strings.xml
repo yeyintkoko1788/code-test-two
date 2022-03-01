@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">MovieApp</string>
+
+    <string name="photo_portrait_ration_1" translatable="false">H,2:3</string>
+    <string name="photo_landscape_ration" translatable="false">H,4:3</string>
+    <string name="str_trending_now">Trending Now</string>
+    <string name="str_what_are_you_looking_for">What are you looking for?</string>
+    <string name="str_upcomming_movie">Upcomming Movie</string>
+</resources>
