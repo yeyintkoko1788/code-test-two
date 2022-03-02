@@ -17,19 +17,19 @@ class MovieDetailViewModel @Inject constructor(
     private val movieRepository : MovieRepository
 ) : ViewModel() {
 
-    private val _movie_detail : MutableLiveData<MovieDetailResponse?> = MutableLiveData()
+    private var _movie_detail : MutableLiveData<MovieDetailResponse?> = MutableLiveData()
     val movieDetail = _movie_detail
 
-    private val _movie_detail_error : MutableLiveData<String?> = MutableLiveData()
+    private var _movie_detail_error : MutableLiveData<String?> = MutableLiveData()
     val movie_detail_error = _movie_detail_error
 
-    private val _detail_visibility : MutableLiveData<Boolean> = MutableLiveData()
+    private var _detail_visibility : MutableLiveData<Boolean> = MutableLiveData()
     val detail_visibility = _detail_visibility
 
-    private val _error_visibility : MutableLiveData<Boolean> = MutableLiveData()
+    private var _error_visibility : MutableLiveData<Boolean> = MutableLiveData()
     val error_visibility = _error_visibility
 
-    private val _movie_detail_loading : MutableLiveData<Boolean> = MutableLiveData()
+    private var _movie_detail_loading : MutableLiveData<Boolean> = MutableLiveData()
     val movie_detail_loading = _movie_detail_loading
 
     var favourite_movie : List<FavouriteMovieVO> = emptyList()
@@ -43,6 +43,9 @@ class MovieDetailViewModel @Inject constructor(
 
     fun setFavourite(id : Int, isFavourite : Boolean) = viewModelScope.launch{
         movieRepository.setFavourite(id,isFavourite)
+        val temp = _movie_detail.value
+        temp?.isFavourite = !isFavourite
+        _movie_detail.value = temp
     }
 
     fun getFavouriteMovie() = viewModelScope.launch {
